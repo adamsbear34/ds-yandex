@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  ds-yandex:
+    command: npm run start:prod
+    env_file: /home/cwash/apps/ds-mobile/config/yandex/.env.production
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "2"
+        max-size: "10m"
+  ds-yandex-rp:
+    container_name: ds-yandex-rp
+    hostname: ds-yandex-rp
+    ports:
+      - "5060:5060"
+    volumes:
+      - ./nginx/default.conf.prod:/etc/nginx/conf.d/default.conf
+      - /home/cwash/apps/ds-mobile/logs/ya/nginx:/var/log/nginx
+    restart: unless-stopped
+networks:
+  default:
+    external:
+      name: ds-mobile-external

@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  ds-yandex:
+    container_name: ds-yandex
+    build: ./
+    depends_on:
+      - bull-queue
+    restart: unless-stopped
+  bull-queue:
+    image: redis:7.0-alpine
+    container_name: bull-queue
+    restart: always
+    ports:
+      - "6379:6379"
+  ds-yandex-rp:
+    image: nginx:stable-alpine
+    container_name: ds-yandex-rp
