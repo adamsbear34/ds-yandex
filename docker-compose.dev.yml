@@ -4,7 +4,7 @@ services:
   ds-yandex:
     command: npm run start:dev
     env_file:
-      - ./.env.development
+      - /home/cwash/apps/ds-mobile/config/yandex/.env.development
     volumes:
       - ./ds-yandex/src:/usr/app/src
   ds-yandex-rp:

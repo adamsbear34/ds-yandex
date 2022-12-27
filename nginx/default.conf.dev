@@ -1,7 +1,7 @@
 server {
-    listen 5000;
+    listen 5061;
 
-    location /auth {
+    location / {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
