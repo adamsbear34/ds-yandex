@@ -6,6 +6,8 @@ services:
     build: ./
     depends_on:
       - bull-queue
+    environment:
+      REDIS_HOST: bull-queue
     restart: unless-stopped
   bull-queue:
     image: redis:7.0-alpine

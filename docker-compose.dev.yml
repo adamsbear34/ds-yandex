@@ -12,3 +12,7 @@ services:
       - "5061:5061"
     volumes:
       - ./nginx/default.conf.dev:/etc/nginx/conf.d/default.conf
+networks:
+  default:
+    external:
+      name: ds-mobile-external

@@ -9,6 +9,7 @@ services:
       options:
         max-file: "2"
         max-size: "10m"
+    restart: unless-stopped
   ds-yandex-rp:
     container_name: ds-yandex-rp
     hostname: ds-yandex-rp
