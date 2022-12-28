@@ -2,16 +2,20 @@ version: "3"
 
 services:
   ds-yandex:
+    container_name: ds-yandex-tst
     command: npm run start:dev
     env_file:
       - /home/cwash/apps/ds-mobile/config/yandex/.env.development
     volumes:
       - ./ds-yandex/src:/usr/app/src
   ds-yandex-rp:
+    container_name: ds-yandex-rp-tst
     ports:
       - "5061:5061"
     volumes:
       - ./nginx/default.conf.dev:/etc/nginx/conf.d/default.conf
+  bull-queue:
+    container_name: bull-queue-tst
 networks:
   default:
     external:
