@@ -7,7 +7,7 @@ import { CreateOrderRequest } from '@/core/dto/req/create-order-request.dto';
 import { YaOrder } from '@/carwash/entity/ya-order.entity';
 import { OrderExcecutionStatus, OrderStatus, SendStatus } from '@/common/enums';
 import { YandexService } from '@/yandex/yandex.service';
-import { queuePool } from "@/bull-admin/bull-board-queue";
+import { queuePool } from '@/bull-admin/bull-board-queue';
 
 @Injectable()
 export class OrderService {

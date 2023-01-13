@@ -30,8 +30,8 @@ export class CoreService {
     //TODO
     //1. Check if car wash exists
     const bay: any = await this.dsCloudService.getBay(
-      createOrderReq.carWashId,
-      +createOrderReq.boxNumber,
+      createOrderReq.CarWashId,
+      +createOrderReq.BoxNumber,
     );
 
     if (!bay) throw new PingException(HttpStatus.BAD_REQUEST);
@@ -39,10 +39,10 @@ export class CoreService {
     if (bay.status === BoxStatus.UNAVAILABLE || bay.status === BoxStatus.BUSY)
       throw new PingException(HttpStatus.UNAUTHORIZED);
 
-    if (createOrderReq.orderStatus != OrderStatus.ORDERCREATED)
+    if (createOrderReq.OrderStatus != OrderStatus.ORDERCREATED)
       throw new HttpException('Unable to create order', HttpStatus.BAD_REQUEST);
 
-    createOrderReq.boxId = bay.identifier;
+    createOrderReq.BoxId = bay.identifier;
 
     //3. Submit order for process
     await this.orderQueue.add('orderjob', createOrderReq);

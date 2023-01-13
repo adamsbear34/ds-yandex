@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { YaOrder } from '@/carwash/entity/ya-order.entity';
 import { Repository } from 'typeorm';
 import { CreateOrderRequest } from '@/core/dto/req/create-order-request.dto';
-import { OrderExcecutionStatus, OrderStatus, SendStatus } from "@/common/enums";
+import { OrderExcecutionStatus, OrderStatus, SendStatus } from '@/common/enums';
 
 @Injectable()
 export class CarwashService {
@@ -14,15 +14,15 @@ export class CarwashService {
   async createOrder(orderRequest: CreateOrderRequest): Promise<YaOrder> {
     const order = new YaOrder();
 
-    order.externalId = orderRequest.id;
-    order.boxNumber = parseInt(orderRequest.boxNumber);
-    order.cmnCarWashId = parseInt(orderRequest.carWashId);
-    order.cmnDeviceId = parseInt(orderRequest.boxId);
-    order.description = orderRequest.description;
-    order.contractId = orderRequest.contractId;
-    order.orderSum = orderRequest.sum;
-    order.orderTime = new Date(orderRequest.dateCreate);
-    order.status = orderRequest.orderStatus;
+    order.externalId = orderRequest.Id;
+    order.boxNumber = parseInt(orderRequest.BoxNumber);
+    order.cmnCarWashId = parseInt(orderRequest.CarWashId);
+    order.cmnDeviceId = parseInt(orderRequest.BoxId);
+    order.description = orderRequest.Description;
+    order.contractId = orderRequest.ContractId;
+    order.orderSum = orderRequest.Sum;
+    order.orderTime = new Date(orderRequest.DateCreate);
+    order.status = orderRequest.OrderStatus;
 
     const newOrder = await this.repository.create(order);
 

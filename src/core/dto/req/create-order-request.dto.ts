@@ -5,21 +5,21 @@ import { Transform } from 'class-transformer';
 import { dateInputTransform } from '@/common/utils';
 
 export class CreateOrderRequest {
-  id: string;
-  @Transform(({ value }) => dateInputTransform(value, 'DD.MM.YYYY, hh:mm:ss'))
-  dateCreate: Date;
-  carWashId: string;
-  boxNumber: string;
-  @IsOptional()
-  boxId?: string;
+  Id: string;
+  @Transform(({ value }) => new Date(value))
+  DateCreate: Date;
+  CarWashId: string;
+  BoxNumber: string;
   @IsEnum(OrderStatus)
   @IsOptional()
-  orderStatus?: OrderStatus;
-  sum: number;
-  sumCompleted: number;
+  OrderStatus?: OrderStatus;
+  Sum: number;
+  SumCompleted: number;
   @IsOptional()
-  services?: Price[];
+  Description?: string;
   @IsOptional()
-  description?: string;
-  contractId: string;
+  BoxId?: string;
+  ContractId: string;
+  @IsOptional()
+  SumPaidStationCompleted?: number;
 }
