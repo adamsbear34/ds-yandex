@@ -26,6 +26,7 @@ export class CoreController {
     @Query() creteOrderQuery: CreateOrderQuery,
     @Body() createOrderReq: CreateOrderRequest,
   ) {
+    console.log(createOrderReq);
     return this.coreService.createOrder(createOrderReq);
   }
 
