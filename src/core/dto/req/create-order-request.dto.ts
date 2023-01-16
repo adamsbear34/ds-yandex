@@ -12,7 +12,7 @@ export class CreateOrderRequest {
   BoxNumber: string;
   @IsEnum(OrderStatus)
   @IsOptional()
-  OrderStatus?: OrderStatus;
+  Status?: OrderStatus;
   Sum: number;
   SumCompleted: number;
   @IsOptional()

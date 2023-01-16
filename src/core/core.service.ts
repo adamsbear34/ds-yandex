@@ -39,7 +39,7 @@ export class CoreService {
     if (bay.status === BoxStatus.UNAVAILABLE || bay.status === BoxStatus.BUSY)
       throw new PingException(HttpStatus.UNAUTHORIZED);
 
-    if (createOrderReq.OrderStatus != OrderStatus.ORDERCREATED)
+    if (createOrderReq.Status != OrderStatus.ORDERCREATED)
       throw new HttpException('Unable to create order', HttpStatus.BAD_REQUEST);
 
     createOrderReq.BoxId = bay.identifier;
