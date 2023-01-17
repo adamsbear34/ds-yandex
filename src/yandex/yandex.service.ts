@@ -45,7 +45,7 @@ export class YandexService {
     try {
       const response: AxiosResponse = await firstValueFrom(
         this.httpService.post(
-          `${this.baseUrl}/api/carwash/order/accept?apikey=${this.apiKey}&orderId=${orderId}&reason=${reason}`,
+          `${this.baseUrl}/api/carwash/order/canceled?apikey=${this.apiKey}&orderId=${orderId}&reason=${reason}`,
         ),
       );
       return response.status;
@@ -71,7 +71,7 @@ export class YandexService {
     try {
       const response: AxiosResponse = await firstValueFrom(
         this.httpService.post(
-          `${this.baseUrl}/api/carwash/order/accept?apikey=${this.apiKey}&orderId=${orderId}&sum=${sum}&extendedOrderId=${extendedOrderId}&extendedDate=${extendedDate}`,
+          `${this.baseUrl}/api/carwash/order/completed?apikey=${this.apiKey}&orderId=${orderId}&sum=${sum}&extendedOrderId=${extendedOrderId}&extendedDate=${extendedDate}`,
         ),
       );
       return response.status;
