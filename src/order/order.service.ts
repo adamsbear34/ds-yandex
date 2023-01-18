@@ -105,7 +105,7 @@ export class OrderService {
         newOrder.externalId,
         newOrder.orderSum,
         newOrder.id,
-        moment(chargeTime).format('DD.MM.yyyyTHH:mm:ss'),
+        moment(chargeTime).format('DD.MM.yyyy HH:mm:ss'),
       );
       await this.carwashService.updateOrderStatus(
         newOrder.id,
