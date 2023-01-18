@@ -8,6 +8,7 @@ import { YaOrder } from '@/carwash/entity/ya-order.entity';
 import { OrderExcecutionStatus, OrderStatus, SendStatus } from '@/common/enums';
 import { YandexService } from '@/yandex/yandex.service';
 import { queuePool } from '@/bull-admin/bull-board-queue';
+import * as moment from 'moment';
 
 @Injectable()
 export class OrderService {
@@ -104,7 +105,7 @@ export class OrderService {
         newOrder.externalId,
         newOrder.orderSum,
         newOrder.id,
-        chargeTime,
+        moment(chargeTime).format('DD.MM.yyyyTHH:mm:ss'),
       );
       await this.carwashService.updateOrderStatus(
         newOrder.id,

@@ -14,6 +14,7 @@ import { PingExceptionFilter } from '@/common/filters';
 import { CreateOrderRequest } from '@/core/dto/req/create-order-request.dto';
 import { ApiKeyGuard } from '@/auth/guard/api-key.guard';
 import { CreateOrderQuery } from '@/core/dto/req/create-order-query.dto';
+import * as moment from 'moment';
 
 @Controller('carwash')
 export class CoreController {
@@ -26,7 +27,6 @@ export class CoreController {
     @Query() creteOrderQuery: CreateOrderQuery,
     @Body() createOrderReq: CreateOrderRequest,
   ) {
-    console.log(createOrderReq);
     return this.coreService.createOrder(createOrderReq);
   }
 

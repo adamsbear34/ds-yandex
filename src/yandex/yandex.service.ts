@@ -66,9 +66,10 @@ export class YandexService {
     orderId: string,
     sum: number,
     extendedOrderId: number,
-    extendedDate: Date,
+    extendedDate: string,
   ): Promise<number> {
     try {
+      console.log(extendedDate);
       const response: AxiosResponse = await firstValueFrom(
         this.httpService.post(
           `${this.baseUrl}/api/carwash/order/completed?apikey=${this.apiKey}&orderId=${orderId}&sum=${sum}&extendedOrderId=${extendedOrderId}&extendedDate=${extendedDate}`,
