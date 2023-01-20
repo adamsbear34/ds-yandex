@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
   bull-queue:
     image: redis:7.0-alpine
-    command: redis-server --appendonly yes --replica-read-only no
+    command: redis-server --appendonly yes --replica-read-only no --requirepass dsAdminP&SS!
     restart: unless-stopped
     ports:
       - "6379:6379"

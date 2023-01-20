@@ -14,7 +14,7 @@ import { BullModule } from '@nestjs/bull';
 import { OrderModule } from './order/order.module';
 import { YaOrder } from '@/carwash/entity/ya-order.entity';
 import { AuthModule } from './auth/auth.module';
-import { BullAdminController } from "@/bull-admin/bull-admin.controller";
+import { BullAdminController } from '@/bull-admin/bull-admin.controller';
 
 @Module({
   imports: [
@@ -43,6 +43,7 @@ import { BullAdminController } from "@/bull-admin/bull-admin.controller";
         redis: {
           host: configService.get<string>('REDIS_HOST'),
           port: configService.get<number>('REDIS_PORT'),
+          password: configService.get<string>('REDIS_PASS'),
         },
       }),
       inject: [ConfigService],
@@ -54,7 +55,7 @@ import { BullAdminController } from "@/bull-admin/bull-admin.controller";
     OrderModule,
     AuthModule,
   ],
-  controllers: [BullAdminController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}
