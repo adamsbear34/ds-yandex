@@ -7,7 +7,6 @@ import { CreateOrderRequest } from '@/core/dto/req/create-order-request.dto';
 import { YaOrder } from '@/carwash/entity/ya-order.entity';
 import { OrderExcecutionStatus, OrderStatus, SendStatus } from '@/common/enums';
 import { YandexService } from '@/yandex/yandex.service';
-import { queuePool } from '@/bull-admin/bull-board-queue';
 import * as moment from 'moment';
 
 @Injectable()
@@ -17,9 +16,7 @@ export class OrderService {
     private carwashService: CarwashService,
     private dscloudService: DsCloudService,
     private yandexService: YandexService,
-  ) {
-    queuePool.add(this.orderQueue);
-  }
+  ) {}
 
   async processOrder(orderRequest: CreateOrderRequest) {
     let newOrder: YaOrder;
@@ -29,12 +26,6 @@ export class OrderService {
     try {
       newOrder = await this.carwashService.createOrder(orderRequest);
 
-      await this.carwashService.updateOrderStatus(
-        newOrder.id,
-        OrderStatus.ORDERCREATED,
-        null,
-        SendStatus.NO,
-      );
       await this.yandexService.accept(newOrder.externalId);
       await this.carwashService.updateOrderStatus(
         newOrder.id,

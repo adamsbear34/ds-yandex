@@ -22,7 +22,9 @@ export class CarwashService {
     order.contractId = orderRequest.ContractId;
     order.orderSum = orderRequest.Sum;
     order.orderTime = new Date(orderRequest.DateCreate);
-    order.status = orderRequest.Status;
+    order.status = OrderStatus.ORDERCREATED;
+    order.sumRecived = orderRequest.SumPaidStationCompleted;
+    order.sendStatus = SendStatus.NO;
 
     const newOrder = await this.repository.create(order);
 

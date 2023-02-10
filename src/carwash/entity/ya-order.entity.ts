@@ -20,6 +20,9 @@ export class YaOrder {
   @Column({ type: 'number', name: 'ORDER_SUM' })
   orderSum: number;
 
+  @Column({ type: 'number', name: 'SUM_RECIVED' })
+  sumRecived: number;
+
   @Column({
     type: 'varchar2',
     length: 200,

@@ -35,6 +35,7 @@ export class CoreService {
     );
 
     if (!bay) throw new PingException(HttpStatus.BAD_REQUEST);
+
     //2. Check if bay is free
     if (bay.status === BoxStatus.UNAVAILABLE || bay.status === BoxStatus.BUSY)
       throw new PingException(HttpStatus.UNAUTHORIZED);
