@@ -1,5 +1,23 @@
 server {
-    listen 5060;
+    listen 80;
+    server_name yandex.ds-mobile.ru www.yandex.ds-mobile.ru;
+    location / {
+        return 301 https:////ds-yandex:5065$request_uri;
+    }
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name yandex.ds-mobile.ru www.yandex.ds-mobile.ru;
+
+    ssl_certificate_key /etc/letsencrypt/live/yandex.ds-mobile.ru/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/yandex.ds-mobile.ru/fullchain.pem;
+
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location /api {
         proxy_set_header X-Real-IP $remote_addr;

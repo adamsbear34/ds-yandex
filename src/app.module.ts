@@ -47,6 +47,19 @@ import { AuthModule } from './auth/auth.module';
       }),
       inject: [ConfigService],
     }),
+    WinstonModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        format: winston.format.combine(
+          winston.format.timestamp(),
+          winston.format.json(),
+        ),
+        transports: [
+          new LogtailTransport(new Logtail(configService.get('LOGTAIL_TOKEN'))),
+        ],
+      }),
+      inject: [ConfigService],
+    }),
     YandexModule,
     DsCloudModule,
     CoreModule,
