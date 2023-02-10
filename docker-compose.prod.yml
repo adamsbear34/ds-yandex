@@ -4,7 +4,7 @@ services:
   ds-yandex:
     container_name: ds-yandex
     command: npm run start:prod
-    env_file: ./.env.production
+    env_file: home/cwash/app/env/.env.production
     logging:
       driver: "json-file"
       options:
