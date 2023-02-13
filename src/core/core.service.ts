@@ -29,6 +29,7 @@ export class CoreService {
   public async createOrder(createOrderReq: CreateOrderRequest) {
     //TODO
     //1. Check if car wash exists
+
     const bay: any = await this.dsCloudService.getBay(
       createOrderReq.CarWashId,
       +createOrderReq.BoxNumber,

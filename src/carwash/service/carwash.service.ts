@@ -54,11 +54,11 @@ export class CarwashService {
     statusExecution: OrderExcecutionStatus = null,
   ) {
     await this.repository.update(id, {
-      status: status,
-      chargeTime: chargeTime,
-      sendStatus: sendStatus,
-      sendTime: sendTime,
-      errorReason: error,
+      ...(status && { status: status }),
+      ...(chargeTime && { chargeTime: chargeTime }),
+      ...(sendStatus && { sendStatus: sendStatus }),
+      ...(sendTime && { sendTime: sendTime }),
+      ...(error && { errorReason: error }),
       statusExecution: statusExecution,
     });
   }
